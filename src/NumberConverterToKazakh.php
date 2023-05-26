@@ -1,5 +1,6 @@
 <?php
 
+namespace Padman009\NumberConverterToKazakh;
 
 class NumberConverterToKazakh
 {
@@ -70,32 +71,32 @@ class NumberConverterToKazakh
         $number = str_pad($number, ceil(strlen($number) / 3) * 3, 0, STR_PAD_LEFT);
         $parts = array_reverse(str_split($number, 3));
 
-        foreach($parts as $i=>$part) {
-            if($part>0) {
+        foreach ($parts as $i => $part) {
+            if ($part > 0) {
                 $digits = array();
-                if($part>99) {
-                    $digits[] = floor($part/100)*100;
+                if ($part > 99) {
+                    $digits[] = floor($part / 100) * 100;
                 }
 
-                if($mod1=$part%100) {
-                    $mod2 = $part%10;
-                    $flag = $i==1 && $mod1!=11 && $mod1!=12 && $mod2<3 ? 1 : 1;
+                if ($mod1 = $part % 100) {
+                    $mod2 = $part % 10;
+                    $flag = $i == 1 && $mod1 != 11 && $mod1 != 12 && $mod2 < 3 ? 1 : 1;
                     //				$flag = $i==1 && $mod1!=11 && $mod1!=12 && $mod2<3 ? -1 : 1;
-                    if($mod1<20 || !$mod2) {
-                        $digits[] = $flag*$mod1;
+                    if ($mod1 < 20 || !$mod2) {
+                        $digits[] = $flag * $mod1;
                     } else {
-                        $digits[] = floor($mod1/10)*10;
-                        $digits[] = $flag*$mod2;
+                        $digits[] = floor($mod1 / 10) * 10;
+                        $digits[] = $flag * $mod2;
                     }
                 }
 
                 $last = abs(end($digits));
 
-                foreach($digits as $j=>$digit) {
+                foreach ($digits as $j => $digit) {
                     $digits[$j] = self::$dic[0][$digit];
                 }
 
-                $digits[] = self::$dic[1][$i][(($last%=100)>4 && $last<20) ? 2 : self::$dic[2][min($last%10,5)]];
+                $digits[] = self::$dic[1][$i][(($last %= 100) > 4 && $last < 20) ? 2 : self::$dic[2][min($last % 10, 5)]];
 
                 array_unshift($string, join(' ', $digits));
             }
