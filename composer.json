@@ -1,0 +1,20 @@
+{
+    "name": "padman009/number-converter-to-kazakh",
+    "description": "Сандарды қазақша жазуға арналған кітапхана",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Padman009\\NumberConverterToKazakh\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "padman009",
+            "email": "01.bakhtiyar@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.0.0"
+    }
+}
